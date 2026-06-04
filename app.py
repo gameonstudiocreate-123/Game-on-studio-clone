@@ -2,16 +2,20 @@ from flask import Flask, render_template
 import mysql.connector
 import smtplib
 from email.mime.text import MIMEText
+import os
 
 app = Flask(__name__)
 
 # MySQL
 db = mysql.connector.connect(
-    host="127.0.0.1",
-    user="root",
-    password="admin",
-    database="game_on_studio"
+    host=os.environ.get("DB_HOST"),
+    port=27546,
+    user=os.environ.get("DB_USER"),
+    password=os.environ.get("DB_PASSWORD"),
+    database=os.environ.get("DB_NAME"),
+    ssl_ca="ca.pem"
 )
+
 cursor = db.cursor()
 
 
@@ -137,5 +141,5 @@ def contact():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
 
