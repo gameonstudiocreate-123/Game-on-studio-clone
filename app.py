@@ -18,9 +18,6 @@ def get_db():
     )
 
 
-cursor = get_db.cursor()
-
-
 @app.route('/')
 def dashboard():
     return render_template('dashboard.html')
