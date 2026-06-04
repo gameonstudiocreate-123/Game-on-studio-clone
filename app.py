@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for,flash
 import mysql.connector
 import smtplib
 from email.mime.text import MIMEText
@@ -59,32 +59,34 @@ def send_email(first, last, user_email, subject, message):
         sender_email = os.environ.get("EMAIL_USER")
         sender_password = os.environ.get("EMAIL_PASS")
 
-        owner_email = sender_email
+        msg = MIMEText(f"""
+New Contact Form Submission:
 
-        body = f"""
-        New Contact Form Submission:
+Name: {first} {last}
+Email: {user_email}
+Subject: {subject}
+Message: {message}
+""")
 
-        Name: {first} {last}
-        Email: {user_email}
-        Subject: {subject}
-        Message: {message}
-        """
-
-        msg = MIMEText(body)
         msg["Subject"] = "New Contact Form Submission"
         msg["From"] = sender_email
-        msg["To"] = owner_email
+        msg["To"] = sender_email
         msg["Reply-To"] = user_email
 
-        server = smtplib.SMTP("smtp.gmail.com", 587, timeout=10)
+        # IMPORTANT FIX
+        server = smtplib.SMTP("smtp.gmail.com", 587, timeout=20)
+        server.ehlo()
         server.starttls()
+        server.ehlo()
+
         server.login(sender_email, sender_password)
         server.send_message(msg)
         server.quit()
 
-    except Exception as e:
-        print("EMAIL ERROR:", e)
+        print("EMAIL SENT SUCCESS")
 
+    except Exception as e:
+        print("EMAIL FAILED:", e)
 
 
 @app.route('/contact', methods=['POST'])
@@ -110,10 +112,13 @@ def contact():
 
         send_email(first, last, email, subject, message)
 
-        return redirect(url_for('dashboard') + "#contact")
+        flash("Message submitted successfully!", "success")
+
+        return redirect(url_for('dashboard'))
 
     except Exception as e:
-       return str(e), 500
+        flash(f"Error: {str(e)}", "danger")
+        return redirect(url_for('dashboard'))
 
 
 if __name__ == "__main__":

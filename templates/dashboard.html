@@ -118,6 +118,15 @@
 
 </section>
 <!-- =================Contact Form========================== -->
+ {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+      <div class="alert {{ category }}">
+        {{ message }}
+      </div>
+    {% endfor %}
+  {% endif %}
+{% endwith %}
  <section id="contactform" class="contact-section">
 
     <div class="contact-container">
