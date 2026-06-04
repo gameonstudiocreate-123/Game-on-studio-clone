@@ -1,0 +1,153 @@
+/* Page */
+body {
+    margin: 0;
+    background: #111;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+/* Title */
+h1 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Container */
+.unity-flow {
+    width: 80%;
+    margin: auto;
+}
+
+/* Each section */
+.flow-section {
+    margin: 60px 0;
+    overflow: hidden; /* important for float */
+}
+
+/* LEFT IMAGE */
+.left-img {
+    float: left;
+    width: 260px;
+    margin-right: 20px;
+    border-radius: 10px;
+}
+
+/* RIGHT IMAGE */
+.right-img {
+    float: right;
+    width: 260px;
+    margin-left: 20px;
+    border-radius: 10px;
+}
+
+/* Text styling */
+.flow-section h2 {
+    color: #00ffff;
+    margin-bottom: 10px;
+}
+
+.flow-section p {
+    font-size: 18px;
+    line-height: 1.7;
+    text-align: justify;
+}
+
+/* Typing cursor */
+.flow-section p::after {
+    content: "|";
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0; }
+}
+
+/* Hover effect (optional) */
+.flow-section img {
+    transition: 0.3s;
+}
+
+.flow-section img:hover {
+    transform: scale(1.05);
+}
+
+
+   
+/*===============Tablet====================== */
+
+@media screen and (max-width: 1024px) {
+
+    .left-img,
+    .right-img {
+        width: 250px;
+    }
+
+    .flow-section p {
+        font-size: 17px;
+    }
+}
+
+/* ======================
+   MOBILE
+====================== */
+
+@media screen and (max-width: 768px) {
+
+    h1 {
+        font-size: 28px;
+        text-align: center;
+    }
+
+    .flow-section {
+        text-align: center;
+        margin: 40px 0;
+    }
+
+    .left-img,
+    .right-img {
+        float: none;
+        display: block;
+        width: 100%;
+        max-width: 350px;
+        margin: 0 auto 20px auto;
+    }
+
+    .flow-section h2 {
+        font-size: 24px;
+    }
+
+    .flow-section p {
+        font-size: 16px;
+        text-align: justify;
+        padding: 0 10px;
+    }
+
+    a {
+        font-size: 18px;
+    }
+}
+
+/* ======================
+   SMALL MOBILE
+====================== */
+
+@media screen and (max-width: 480px) {
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .flow-section h2 {
+        font-size: 20px;
+    }
+
+    .flow-section p {
+        font-size: 15px;
+        line-height: 1.6;
+    }
+
+    .left-img,
+    .right-img {
+        max-width: 100%;
+    }
+}

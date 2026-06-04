@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+</head>
+
+<body>
+
+<!-- TOP BAR -->
+<div class="top-bar">
+
+    <!-- Hamburger FIRST -->
+    <div class="menu-icon" onclick="toggleMenu()">☰</div>
+
+    <!-- Logo -->
+    <img src="{{ url_for('static', filename='logo.jpeg') }}" class="logo">
+
+    <!-- Title -->
+    <h2 class="title">Game on studio</h2>
+
+</div>
+
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
+    <h2>Menu</h2>
+    <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#contactform">Drop Us a Message</a></li>
+        <li><a href="#courses">Course</a></li>
+    </ul>
+</div>
+
+<!-- ================= HOME (VIDEO) ================= -->
+<section id="home">
+
+    <div class="video-container">
+        <video autoplay muted loop id="bg-video">
+            <source src="{{ url_for('static', filename='video/video.mp4') }}" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="center-text">
+        <h1 id="typing-text"></h1>
+        <p id="typing-text-2"></p>
+    </div>
+
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section id="about">
+
+    <!-- Video Background -->
+    <div class="about-video-container">
+        <video autoplay muted loop class="about-video">
+            <source src="{{ url_for('static', filename='video/temple_video.mp4') }}" type="video/mp4">
+        </video>
+    </div>
+
+    <!-- Overlay (dark effect) -->
+    <div class="about-overlay"></div>
+
+    <!-- Content -->
+    <div class="about-content">
+        <h1 class="about-title">About Game On Studio</h1>
+
+        <p class="about-text">
+            𝙒𝙚𝙡𝙘𝙤𝙢𝙚 𝙩𝙤 <span>Game On Studio</span>, 𝙖𝙣 𝙤𝙣𝙡𝙞𝙣𝙚 𝙜𝙖𝙢𝙚 𝙙𝙚𝙫𝙚𝙡𝙤𝙥𝙢𝙚𝙣𝙩 𝙖𝙘𝙖𝙙𝙚𝙢𝙮 𝙙𝙚𝙙𝙞𝙘𝙖𝙩𝙚𝙙 𝙩𝙤 𝙝𝙚𝙡𝙥𝙞𝙣𝙜 𝙨𝙩𝙪𝙙𝙚𝙣𝙩𝙨 𝙩𝙪𝙧𝙣 𝙩𝙝𝙚𝙞𝙧 𝙜𝙖𝙢𝙞𝙣𝙜 𝙥𝙖𝙨𝙨𝙞𝙤𝙣 𝙞𝙣𝙩𝙤 𝙧𝙚𝙖𝙡 𝙙𝙚𝙫𝙚𝙡𝙤𝙥𝙢𝙚𝙣𝙩 𝙨𝙠𝙞𝙡𝙡𝙨.
+        </p>
+
+        <p class="about-text">
+            𝙒𝙚 𝙩𝙚𝙖𝙘𝙝 𝙜𝙖𝙢𝙚 𝙙𝙚𝙨𝙞𝙜𝙣 𝙖𝙣𝙙 𝙙𝙚𝙫𝙚𝙡𝙤𝙥𝙢𝙚𝙣𝙩 𝙪𝙨𝙞𝙣𝙜 𝙞𝙣𝙙𝙪𝙨𝙩𝙧𝙮-𝙨𝙩𝙖𝙣𝙙𝙖𝙧𝙙 𝙩𝙤𝙤𝙡𝙨 𝙨𝙪𝙘𝙝 𝙖𝙨 𝙐𝙣𝙞𝙩𝙮 𝙖𝙣𝙙 𝙐𝙣𝙧𝙚𝙖𝙡 𝙀𝙣𝙜𝙞𝙣𝙚. 𝙊𝙪𝙧 𝙘𝙤𝙪𝙧𝙨𝙚𝙨 𝙘𝙤𝙫𝙚𝙧 2𝘿 𝙜𝙖𝙢𝙚𝙨, 3𝘿 𝙜𝙖𝙢𝙚𝙨, 𝙁𝙋𝙎 𝙜𝙖𝙢𝙚𝙨, 𝙢𝙪𝙡𝙩𝙞𝙥𝙡𝙖𝙮𝙚𝙧 𝙜𝙖𝙢𝙚𝙨, 𝙜𝙖𝙢𝙚 𝙢𝙚𝙘𝙝𝙖𝙣𝙞𝙘𝙨, 𝙡𝙚𝙫𝙚𝙡 𝙙𝙚𝙨𝙞𝙜𝙣, 𝙖𝙣𝙙 𝙥𝙪𝙗𝙡𝙞𝙨𝙝𝙞𝙣𝙜.
+        </p>
+
+        <p class="about-text">
+            𝙊𝙪𝙧 𝙢𝙞𝙨𝙨𝙞𝙤𝙣 𝙞𝙨 𝙩𝙤 𝙢𝙖𝙠𝙚 𝙜𝙖𝙢𝙚 𝙙𝙚𝙫𝙚𝙡𝙤𝙥𝙢𝙚𝙣𝙩 <span>easy, practical, and accessible</span> 𝙛𝙤𝙧 𝙗𝙚𝙜𝙞𝙣𝙣𝙚𝙧𝙨. 𝙏𝙝𝙧𝙤𝙪𝙜𝙝 𝙡𝙞𝙫𝙚 𝙤𝙣𝙡𝙞𝙣𝙚 𝙘𝙡𝙖𝙨𝙨𝙚𝙨, 𝙝𝙖𝙣𝙙𝙨-𝙤𝙣 𝙥𝙧𝙤𝙟𝙚𝙘𝙩𝙨, 𝙖𝙣𝙙 𝙚𝙭𝙥𝙚𝙧𝙩 𝙜𝙪𝙞𝙙𝙖𝙣𝙘𝙚,𝙨𝙩𝙪𝙙𝙚𝙣𝙩𝙨 𝙡𝙚𝙖𝙧𝙣 𝙝𝙤𝙬 𝙩𝙤 𝙘𝙧𝙚𝙖𝙩𝙚 𝙖𝙣𝙙 𝙥𝙪𝙗𝙡𝙞𝙨𝙝 𝙩𝙝𝙚𝙞𝙧 𝙤𝙬𝙣 𝙜𝙖𝙢𝙚𝙨 𝙛𝙧𝙤𝙢 𝙨𝙘𝙧𝙖𝙩𝙘𝙝. 𝙒𝙝𝙚𝙩𝙝𝙚𝙧 𝙮𝙤𝙪 𝙙𝙧𝙚𝙖𝙢 𝙤𝙛 𝙗𝙚𝙘𝙤𝙢𝙞𝙣𝙜 𝙖 𝙜𝙖𝙢𝙚 𝙙𝙚𝙫𝙚𝙡𝙤𝙥𝙚𝙧, 𝙞𝙣𝙙𝙞𝙚 𝙘𝙧𝙚𝙖𝙩𝙤𝙧, 𝙤𝙧 𝙜𝙖𝙢𝙚 𝙙𝙚𝙨𝙞𝙜𝙣𝙚𝙧, 𝙂𝙖𝙢𝙚 𝙊𝙣 𝙎𝙩𝙪𝙙𝙞𝙤 𝙞𝙨 𝙝𝙚𝙧𝙚 𝙩𝙤 𝙝𝙚𝙡𝙥 𝙮𝙤𝙪 𝙗𝙪𝙞𝙡𝙙 𝙩𝙝𝙚 𝙨𝙠𝙞𝙡𝙡𝙨 𝙣𝙚𝙚𝙙𝙚𝙙 𝙛𝙤𝙧 𝙩𝙝𝙚 𝙜𝙖𝙢𝙞𝙣𝙜 𝙞𝙣𝙙𝙪𝙨𝙩𝙧𝙮.
+        </p>
+
+        <p class="about-highlight">
+             𝙇𝙚𝙖𝙧𝙣. 𝘾𝙧𝙚𝙖𝙩𝙚. 𝙋𝙪𝙗𝙡𝙞𝙨𝙝. 🎮🚀
+        </p>
+    </div>
+
+</section>
+<!-- ================= COURSES ================= -->
+<section id="courses">
+
+    <div id="unreal">
+         <a href="{{ url_for('unreal') }}">
+        <img src="{{ url_for('static', filename='unrealtwo.jpeg') }}">
+        
+        </a>
+    </div>
+
+    <div id="unity">
+       <a href="{{ url_for('unity') }}">
+        <img src="{{ url_for('static', filename='unity.jpeg') }}">
+        
+        </a>
+    </div>
+
+</section>
+<!-- ==================contact=================== -->
+<section id="contact">
+
+    <h1>Contact Us</h1>
+
+    <div class="contact-box">
+        <p><strong>📍 Address:</strong> India</p>
+        <p><strong>📧 Email:</strong> gameonstudiocreate@gmail.com</p>
+        <p><strong>📞 Phone:</strong> +91 8179237799</p>
+    </div>
+
+</section>
+<!-- =================Contact Form========================== -->
+ <section id="contactform" class="contact-section">
+
+    <div class="contact-container">
+
+        <p class="subtitle">
+            Drop your details below and let’s see if we can improve your studio.
+        </p>
+
+        <h2 class="heading">
+            Please complete the form below and we’ll be in touch.
+        </h2>
+
+        <!-- SUCCESS MESSAGE -->
+        {% if request.args.get('success') %}
+        <p class="success-msg">Form submitted successfully!</p>
+        {% endif %}
+
+        <form method="POST" action="/contact">
+
+            <label>Name</label>
+            <div class="row">
+                <input type="text" name="first_name" placeholder="First Name (required)" required>
+                <input type="text" name="last_name" placeholder="Last Name (required)" required>
+            </div>
+
+            <label>Email Address (required)</label>
+            <input type="email" name="email" required>
+
+            <label>Subject (required)</label>
+            <input type="text" name="subject" required>
+
+            <label>Message (required)</label>
+            <textarea name="message" required></textarea>
+
+            <button type="submit">Submit</button>
+
+        </form>
+
+    </div>
+
+    <div class="contact-footer">
+        <p>07515 388 009 &nbsp;&nbsp; gameonstudio@gmail.com</p>
+        <p>LinkedIn &nbsp;&nbsp; Privacy</p>
+    </div>
+
+</section>
+
+
+<!-- ================= JS ================= -->
+
+<script>
+const text1 = "We build Worlds to play";
+const text2 = "Game on studio is an indie game development studio to create India's next generation of Game Developers. Starts Here.";
+
+let index1 = 0;
+let index2 = 0;
+
+function typeFirstLine() {
+    if (index1 < text1.length) {
+        document.getElementById("typing-text").innerHTML += text1.charAt(index1);
+        index1++;
+        setTimeout(typeFirstLine, 100);
+    } else {
+        setTimeout(typeSecondLine, 500);
+    }
+}
+
+function typeSecondLine() {
+    if (index2 < text2.length) {
+        document.getElementById("typing-text-2").innerHTML += text2.charAt(index2);
+        index2++;
+        setTimeout(typeSecondLine, 40);
+    }
+}
+
+window.onload = typeFirstLine;
+
+// sidebar toggle
+function toggleMenu() {
+    const sidebar = document.getElementById("sidebar");
+    sidebar.classList.toggle("active");
+}
+</script>
+<script>
+const links = document.querySelectorAll(".sidebar a");
+
+links.forEach(link => {
+    link.addEventListener("click", () => {
+        document.getElementById("sidebar").classList.remove("active");
+    });
+});
+</script>
+</body>
+</html>

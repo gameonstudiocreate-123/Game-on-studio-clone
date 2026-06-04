@@ -1,0 +1,556 @@
+/* Reset */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Smooth scroll */
+html {
+    scroll-behavior: smooth;
+}
+
+/* ================= SECTIONS ================= */
+section {
+    min-height: 100vh;
+    padding: 80px 20px;
+}
+
+/* ================= VIDEO SECTION ================= */
+#home {
+    position: relative;
+}
+
+/* Video container */
+.video-container {
+    position: absolute;   /* IMPORTANT: not fixed */
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+#bg-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Center text */
+.center-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    z-index: 1;
+}
+
+/* ================= TOP BAR ================= */
+/* Top bar */
+.top-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    background: rgba(0,0,0,0.5);
+      z-index: 1000;
+}
+
+/* Logo */
+.logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+/* Title */
+.title {
+    color: white;
+    font-size: 22px;
+    margin-left: 10px;
+    font-family: 'MyCustomFont', sans-serif;
+}
+
+/* Hamburger LEFT */
+.menu-icon {
+    font-size: 28px;
+    color: white;
+    cursor: pointer;
+    margin-right: 15px;   /* space after icon */
+}
+
+/* ================= SIDEBAR ================= */
+.sidebar {
+    position: fixed;
+    left: -250px;
+    top: 0;
+    width: 250px;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    color: white;
+    transition: 0.3s;
+    padding-top: 60px;
+    z-index: 999;
+    
+}
+
+.sidebar.active {
+    left: 0;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 15px;
+    text-align: center;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.sidebar ul li:hover {
+    background: rgba(255,255,255,0.2);
+}
+
+/* ================= ABOUT ================= */
+/* About section */
+#about {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Video background */
+.about-video-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.about-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+/* Overlay for dark effect */
+.about-overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+/* Content */
+.about-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: white;
+    width: 70%;
+    z-index: 2;
+}
+
+/* Title */
+.about-title {
+    font-size: 50px;
+    font-weight: bold;
+    margin-bottom: 20px;
+
+    background: linear-gradient(90deg, #ff00cc, #00ffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    letter-spacing: 2px;
+}
+
+/* Paragraphs */
+.about-text {
+    font-size: 18px;
+    line-height: 1.7;
+    margin-bottom: 15px;
+    font-family: 'MyCustomFont', sans-serif;
+}
+
+/* Highlight words */
+.about-text span {
+    color: #00ffff;
+    font-weight: bold;
+}
+
+/* Final line */
+.about-highlight {
+    margin-top: 20px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #ffcc00;
+    letter-spacing: 1px;
+}
+
+/* CENTER TEXT PERFECTLY */
+.about-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);  /* 🔥 KEY LINE */
+    
+    text-align: center;
+    color: white;
+    width: 60%;
+    z-index: 2;
+}
+
+/* Text styling */
+.about-content h1 {
+    font-size: 45px;
+    margin-bottom: 15px;
+}
+
+.about-content p {
+    font-size: 18px;
+    line-height: 1.6;
+}
+/* ================= COURSES ================= */
+#courses {
+    background: #111;
+    display: flex;
+    justify-content: center;
+    gap: 80px;
+    align-items: center;
+}
+
+/* Each course */
+#unreal, #unity {
+    text-align: center;
+    color: white;
+}
+
+/* Images */
+#unreal img, #unity img {
+    width: 500px;
+    transition: 0.3s;
+    height: 400px;
+}
+
+/* Hover */
+#unreal:hover img,
+#unity:hover img {
+    transform: scale(1.1);
+}
+#courses {
+    background: url("../static/Tree.jpeg") no-repeat center/cover;
+}
+/* ========================Contact=================== */
+
+#contact {
+    background: #000;
+    color: white;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.contact-box {
+    margin-top: 20px;
+    font-size: 18px;
+    line-height: 1.8;
+}
+#contact{
+    background: url("../static/contact.jpeg") no-repeat center/cover;
+}
+
+/* ================= TEXT EFFECT ================= */
+#typing-text {
+    font-size: 50px;
+    font-weight: bold;
+    background: linear-gradient(90deg, #ff00cc, #00ffff, #00ff99, #ffcc00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: 'MyCustomFont', sans-serif;
+}
+
+#typing-text-2 {
+    font-size: 20px;
+    margin-top: 15px;
+    max-width: 600px;
+}
+
+/* ================= FONT ================= */
+@font-face {
+    font-family: 'MyCustomFont';
+    src: url('fonts/Bullpen3D.ttf') format('truetype');
+}
+
+
+html {
+    scroll-behavior: smooth;
+}
+section {
+    min-height: 100vh;
+}
+#home, #about, #courses {
+    scroll-margin-top: 80px;
+}
+.video-container,
+.about-video-container {
+    pointer-events: none;
+}
+/* ===================Contact form====================== */
+.contact-section {
+    background: #f5f5f5;
+    padding: 50px 20px;
+}
+
+.contact-container {
+    width: 90%;
+    max-width: 700px;
+    margin: auto;
+}
+
+.subtitle {
+    color: #777;
+    text-align: center;
+}
+
+.heading {
+    color: #e85c4a;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.row {
+    display: flex;
+    gap: 10px;
+}
+
+.contact-section input,
+.contact-section textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+}
+
+.contact-section textarea {
+    height: 120px;
+}
+
+.contact-section button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border: 1px solid #000;
+    background: white;
+    cursor: pointer;
+}
+
+.contact-footer {
+    background: #3f5c7a;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+}
+
+.success-msg {
+    color: green;
+    text-align: center;
+}
+/* ===============================
+   RESPONSIVE DESIGN
+================================= */
+
+/* Tablets */
+@media screen and (max-width: 1024px) {
+
+    .about-content {
+        width: 90%;
+        padding: 20px;
+    }
+
+    #courses {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    #unreal,
+    #unity {
+        width: 45%;
+    }
+
+    #unreal img,
+    #unity img {
+        width: 100%;
+        height: auto;
+    }
+
+    .contact-container {
+        width: 90%;
+    }
+
+    .row {
+        flex-direction: column;
+    }
+}
+
+
+/* Mobile Phones */
+@media screen and (max-width: 767px) {
+
+    .top-bar {
+        padding: 10px;
+    }
+
+    .logo {
+        width: 45px;
+        height: 45px;
+    }
+
+    .title {
+        font-size: 20px;
+    }
+
+    .menu-icon {
+        font-size: 28px;
+    }
+
+    .center-text {
+        width: 95%;
+        padding: 10px;
+    }
+
+    #typing-text {
+        font-size: 28px;
+        text-align: center;
+    }
+
+    #typing-text-2 {
+        font-size: 16px;
+        text-align: center;
+    }
+
+    .about-title {
+        font-size: 28px;
+        text-align: center;
+    }
+
+    .about-text {
+        font-size: 15px;
+        line-height: 1.8;
+        text-align: justify;
+    }
+
+    .about-highlight {
+        font-size: 18px;
+        text-align: center;
+    }
+
+    #courses {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #unreal,
+    #unity {
+        width: 95%;
+        margin-bottom: 20px;
+    }
+
+    #unreal img,
+    #unity img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    .contact-box {
+        width: 95%;
+        margin: auto;
+        text-align: center;
+    }
+
+    .contact-container {
+        width: 95%;
+        padding: 15px;
+    }
+
+    .heading {
+        font-size: 24px;
+        text-align: center;
+    }
+
+    .subtitle {
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .row {
+        flex-direction: column;
+        gap: 0;
+    }
+
+    .contact-section input,
+    .contact-section textarea {
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .contact-section button {
+        width: 100%;
+    }
+
+    .contact-footer {
+        font-size: 14px;
+        padding: 15px;
+    }
+
+    .sidebar {
+        width: 250px;
+    }
+}
+
+
+/* Large Screens */
+@media screen and (min-width: 1025px) {
+
+    .contact-container {
+        max-width: 700px;
+    }
+
+    .about-content {
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    #courses {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+    }
+
+    #unreal,
+    #unity {
+        width: 450px;
+    }
+
+    #unreal img,
+    #unity img {
+        width: 100%;
+    }
+}

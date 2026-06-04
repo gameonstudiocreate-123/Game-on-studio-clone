@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Unity Course</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='unity.css') }}">
+</head>
+
+<body style="background:#111; color:white;">
+
+<h1 style="text-align:center;">Unity Course</h1>
+
+<div class="unity-content">
+
+    
+
+    <!-- Content -->
+   <div class="unity-sections">
+
+    <div class="unity-flow">
+
+    <!-- 2D -->
+   <div class="flow-section">
+    <img src="{{ url_for('static', filename='2D.jpeg') }}" class="left-img">
+    <h2>2D Game Development</h2>
+    <p id="text1"></p>
+</div>
+
+    <!-- 3D -->
+    <div class="flow-section">
+    <img src="{{ url_for('static', filename='3D.jpeg') }}" class="right-img">
+    <h2>3D Game Development</h2>
+    <p id="text2"></p>
+</div>
+
+    <!-- FPS -->
+    <div class="flow-section">
+    <img src="{{ url_for('static', filename='fps.jpeg') }}" class="left-img">
+    <h2>FPS Games</h2>
+    <p id="text3"></p>
+</div>
+
+
+    <!-- Multiplayer -->
+    <div class="flow-section">
+    <img src="{{ url_for('static', filename='multiplayer.jpeg') }}" class="right-img">
+    <h2>Multiplayer Games</h2>
+    <p id="text4"></p>
+</div>
+</div>
+<!-- Back Button -->
+<div style="text-align:center; margin-top:30px;">
+    <a href="{{ url_for('dashboard') }}" style="color:#00ffff;">⬅ Back to Dashboard</a>
+</div>
+<script>
+const texts = [
+"Learn how to create engaging 2D games using Unity. Understand sprites, animations, physics, and build complete playable games from scratch. This course helps you design smooth gameplay and interactive experiences using real-world projects.",
+
+"Build immersive 3D worlds using Unity. Learn about lighting, textures, cameras, and environment design. Create realistic 3D games with professional quality and optimized performance.",
+
+"Create First Person Shooter games with advanced mechanics like shooting, aiming, enemy AI, and player movement. Build exciting gameplay systems used in real FPS games.",
+
+"Learn networking concepts and develop multiplayer games where players can interact in real-time. Understand synchronization, servers, and online gameplay systems."
+];
+
+let sectionIndex = 0;
+let charIndex = 0;
+
+function typeEffect() {
+    if (sectionIndex < texts.length) {
+
+        let element = document.getElementById("text" + (sectionIndex + 1));
+        let currentText = texts[sectionIndex];
+
+        if (charIndex < currentText.length) {
+            element.innerHTML += currentText.charAt(charIndex);
+            charIndex++;
+            setTimeout(typeEffect, 25);
+        } else {
+            sectionIndex++;
+            charIndex = 0;
+            setTimeout(typeEffect, 500); // delay between sections
+        }
+    }
+}
+
+window.onload = typeEffect;
+</script>
+</body>
+</html>

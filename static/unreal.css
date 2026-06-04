@@ -1,0 +1,226 @@
+/* Whole page */
+/* #unreal-page {
+    
+    background: linear-gradient(135deg,pink,blue );
+    padding: 50px;
+    border-radius: 10px;
+    height: 100vh;
+}
+
+/* Row 1: Videos side by side */
+/* .video-row {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 40px;
+} */
+
+/* Videos */
+/* .video-row video {
+    width: 400px;
+    border-radius: 10px;
+    height: 400px;
+} */
+
+/* Row 2: Image centered */
+/* .image-row {
+    display: flex;
+    justify-content: center;
+    height: 300px;
+} */
+
+/* Image */
+/* .image-row img {
+    width: 500px;
+    border-radius: 10px;
+} */
+
+
+/* @media (max-width: 768px) {
+    .video-row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .video-row video {
+        width: 90%;
+    }
+
+    .image-row img {
+        width: 90%;
+    }
+}  */
+  body {
+    background: #111;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+/* Title */
+.unreal-title {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 40px;
+}
+
+/* Videos row */
+.video-row {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 30px 0;
+}
+
+.video-row video {
+    width: 400px;
+    border-radius: 10px;
+    height: 400px;
+}
+
+/* Second row (image + text) */
+.content-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    padding: 20px;
+}
+
+/* Image left */
+.left-image img {
+    width: 400px;
+    border-radius: 10px;
+}
+
+/* Content right */
+.right-content {
+      max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    line-height: 1.6;
+
+    /* 🔥 Background image */
+    background: url('unreal.jpeg') no-repeat center;
+    background-size: cover;
+
+    /* Dark overlay effect */
+    background-color: rgba(0,0,0,0.7);
+    background-blend-mode: overlay;
+
+    border-radius: 10px;
+    color: white;
+}
+
+/* List */
+.right-content ul {
+    list-style: none;
+    padding: 0;
+}
+
+.right-content li {
+    margin-bottom: 8px;
+}
+
+/* Highlight */
+.highlight {
+    margin-top: 15px;
+    color: #00ffff;
+    font-weight: bold;
+}
+/* ==========================
+   TABLET
+========================== */
+
+@media screen and (max-width: 1024px) {
+
+    .unreal-title {
+        font-size: 34px;
+    }
+
+    .video-row {
+        gap: 15px;
+    }
+
+    .content-row {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .right-content ul {
+        text-align: left;
+        display: inline-block;
+    }
+}
+
+/* ==========================
+   MOBILE
+========================== */
+
+@media screen and (max-width: 768px) {
+
+    .unreal-title {
+        font-size: 28px;
+    }
+
+    .video-row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .video-row video {
+        width: 100%;
+    }
+
+    .content-row {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .right-content h2 {
+        font-size: 24px;
+        text-align: center;
+    }
+
+    .right-content h3 {
+        text-align: center;
+    }
+
+    .right-content p {
+        font-size: 15px;
+        line-height: 1.8;
+        text-align: justify;
+    }
+
+    .right-content ul {
+        width: 100%;
+        padding-left: 20px;
+    }
+
+    .right-content li {
+        font-size: 15px;
+    }
+}
+
+/* ==========================
+   SMALL MOBILE
+========================== */
+
+@media screen and (max-width: 480px) {
+
+    .unreal-title {
+        font-size: 24px;
+    }
+
+    .right-content h2 {
+        font-size: 20px;
+    }
+
+    .right-content p,
+    .right-content li {
+        font-size: 14px;
+    }
+
+    #unreal-page {
+        width: 95%;
+    }
+}

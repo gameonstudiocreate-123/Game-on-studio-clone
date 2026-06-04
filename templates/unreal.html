@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='unreal.css') }}">
+</head>
+<body>
+    <section id="unreal-page">
+
+    <!-- Title -->
+    <h1 class="unreal-title">Unreal Engine Course</h1>
+
+    <!-- Row 1: Two Videos -->
+    <div class="video-row">
+        <video controls>
+            <source src="{{ url_for('static', filename='video/vedioone.mp4') }}" type="video/mp4">
+        </video>
+
+        <video controls>
+            <source src="{{ url_for('static', filename='video/unreal3.mp4') }}" type="video/mp4">
+        </video>
+    </div>
+
+    <!-- Row 2: Image LEFT + Content RIGHT -->
+    <div class="content-row">
+
+        <!-- Left: Image -->
+        <!-- <div class="left-image">
+            <img src="{{ url_for('static', filename='/unreal.jpeg') }}" alt="Unreal Image">
+        </div> -->
+
+        <!-- Right: Content -->
+        <div class="right-content">
+
+            <h2>Create AAA-Quality Games with Unreal Engine</h2>
+
+            <ul>
+                <li>✔ High-Quality 3D Graphics</li>
+                <li>✔ Blueprints Visual Scripting</li>
+                <li>✔ C++ Game Programming</li>
+                <li>✔ Environment & Level Design</li>
+                <li>✔ MetaHuman Character Creation</li>
+                <li>✔ Animation, Cinematics & VFX</li>
+                <li>✔ Multiplayer Game Development</li>
+                <li>✔ PC, Console & Mobile Games</li>
+                <li>✔ Publish Your Own Games</li>
+            </ul>
+
+            <h3>Course Description</h3>
+
+            <p>
+                Learn professional game development using Unreal Engine. Build immersive 3D worlds,
+                create realistic MetaHuman characters, and develop multiplayer games.
+            </p>
+
+            <p class="highlight">
+                🎮 Live Classes | 🚀 Projects | 🏆 Certificate
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+</body>
+</html>
