@@ -109,9 +109,11 @@ def contact():
         db.commit()
         cursor.close()
         db.close()
+        try:
 
-        send_email(first, last, email, subject, message)
-
+           send_email(first, last, email, subject, message)
+        except Exception as e:
+            print("EMAIL ERROR:", e)
         flash("Message submitted successfully!", "success")
 
         return redirect(url_for('dashboard'))
