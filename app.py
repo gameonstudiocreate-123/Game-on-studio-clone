@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, redirect, url_for
 import mysql.connector
 import smtplib
 from email.mime.text import MIMEText
@@ -44,7 +44,7 @@ def unreal():
 @app.route('/unity')
 def unity():
     return render_template('unity.html')
-from flask import Flask, render_template, request, redirect, url_for
+
 import mysql.connector
 import smtplib
 from email.mime.text import MIMEText
@@ -52,33 +52,6 @@ from email.mime.text import MIMEText
 
 
 
-# EMAIL FUNCTION (SEND TO OWNER)
-def send_email(first, last, user_email, subject, message):
-    sender_email = "gameonstudiocreate@gmail.com"
-    sender_password = "kkwuudatjsvoamib"
-
-    owner_email = "gameonstudiocreate@gmail.com"   # ✅ YOUR EMAIL
-
-    body = f"""
-    New Contact Form Submission:
-
-    Name: {first} {last}
-    Email: {user_email}
-    Subject: {subject}
-    Message: {message}
-    """
-
-    msg = MIMEText(body)
-    msg["Subject"] = "New Contact Form Submission"
-    msg["From"] = sender_email
-    msg["To"] = owner_email
-    msg["Reply-To"] = user_email   # 🔥 reply goes to user
-
-    server = smtplib.SMTP("smtp.gmail.com", 587)
-    server.starttls()
-    server.login(sender_email, sender_password)
-    server.send_message(msg)
-    server.quit()
 
 
 # EMAIL FUNCTION (SEND TO OWNER)
@@ -110,9 +83,7 @@ def send_email(first, last, user_email, subject, message):
     server.quit()
 
 
-@app.route('/')
-def home():
-    return render_template('dashboard.html')
+
 
 
 @app.route('/contact', methods=['POST'])
