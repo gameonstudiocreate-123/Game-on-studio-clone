@@ -7,16 +7,18 @@ import os
 app = Flask(__name__)
 
 # MySQL
-db = mysql.connector.connect(
-    host=os.environ.get("DB_HOST"),
-    port=27546,
-    user=os.environ.get("DB_USER"),
-    password=os.environ.get("DB_PASSWORD"),
-    database=os.environ.get("DB_NAME"),
-    ssl_ca="ca.pem"
-)
+def get_db():
+    return mysql.connector.connect(
+        host=os.environ.get("DB_HOST"),
+        port=27546,
+        user=os.environ.get("DB_USER"),
+        password=os.environ.get("DB_PASSWORD"),
+        database=os.environ.get("DB_NAME"),
+        ssl_ca="ca.pem"
+    )
 
-cursor = db.cursor()
+
+cursor = get_db.cursor()
 
 
 @app.route('/')
@@ -93,7 +95,8 @@ def contact():
     email = request.form['email']
     subject = request.form['subject']
     message = request.form['message']
-
+    db=get_db()
+    cursor = db.cursor()
     # Save to DB
     cursor.execute("""
    INSERT INTO contacts (first_name, last_name, email, subject, message)
@@ -104,11 +107,12 @@ def contact():
       first, last, subject, message))
 
     db.commit()   # 🔥 VERY IMPORTANT
+    db.close()
 
 # Send email after saving
     send_email(first, last, email, subject, message)
 
-    return redirect(url_for('home', success=1) + "#contact")
+    return redirect(url_for('dashboard', success=1) + "#contact")
 
 
 if __name__ == "__main__":
