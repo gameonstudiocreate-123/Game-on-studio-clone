@@ -5,7 +5,7 @@ from email.mime.text import MIMEText
 import os
 
 app = Flask(__name__)
-
+app.secret_key = os.environ.get("SECRET_KEY", "dev_secret_key")
 # MySQL
 def get_db():
     return mysql.connector.connect(
@@ -54,33 +54,29 @@ from email.mime.text import MIMEText
 
 
 # EMAIL FUNCTION (SEND TO OWNER)
-def send_email(first, last, user_email, subject, message):
+def send_email(first, last, sender_email, subject, message):
     try:
-        sender_email = os.environ.get("EMAIL_USER")
-        sender_password = os.environ.get("EMAIL_PASS")
+        owner_email = os.environ.get("EMAIL_USER")
+        app_password = os.environ.get("EMAIL_PASS")
 
         msg = MIMEText(f"""
-New Contact Form Submission:
+New Contact Form Message
 
 Name: {first} {last}
-Email: {user_email}
+Email: {sender_email}
 Subject: {subject}
 Message: {message}
-""")
+        """)
 
-        msg["Subject"] = "New Contact Form Submission"
-        msg["From"] = sender_email
-        msg["To"] = sender_email
-        msg["Reply-To"] = user_email
+        msg["Subject"] = subject
+        msg["From"] = owner_email
+        msg["To"] = owner_email
+        msg["Reply-To"] = sender_email 
 
-        # IMPORTANT FIX
-        server = smtplib.SMTP("smtp.gmail.com", 587, timeout=20)
-        server.ehlo()
+        server = smtplib.SMTP("smtp.gmail.com", 587)
         server.starttls()
-        server.ehlo()
-
-        server.login(sender_email, sender_password)
-        server.send_message(msg)
+        server.login(owner_email, app_password)
+        server.sendmail(owner_email, owner_email, msg.as_string())
         server.quit()
 
         print("EMAIL SENT SUCCESS")
@@ -109,19 +105,16 @@ def contact():
         db.commit()
         cursor.close()
         db.close()
-        try:
 
-           send_email(first, last, email, subject, message)
-        except Exception as e:
-            print("EMAIL ERROR:", e)
+        send_email(first, last, email, subject, message)
+
         flash("Message submitted successfully!", "success")
-
         return redirect(url_for('dashboard'))
 
     except Exception as e:
-        flash(f"Error: {str(e)}", "danger")
+        print(e)
+        flash("Something went wrong", "danger")
         return redirect(url_for('dashboard'))
-
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
