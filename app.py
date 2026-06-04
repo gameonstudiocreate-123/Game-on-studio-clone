@@ -111,8 +111,7 @@ def contact():
         return redirect(url_for('dashboard') + "#contact")
 
     except Exception as e:
-        print("CONTACT FORM ERROR:", e)
-        return "Something went wrong. Please try again later.", 500
+       return str(e), 500
 
 
 if __name__ == "__main__":
