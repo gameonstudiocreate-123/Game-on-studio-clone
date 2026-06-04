@@ -55,33 +55,35 @@ from email.mime.text import MIMEText
 
 # EMAIL FUNCTION (SEND TO OWNER)
 def send_email(first, last, user_email, subject, message):
-    sender_email = "gameonstudiocreate@gmail.com"
-    sender_password = "xdbrknghdygqcrrs"
+    try:
+        sender_email = os.environ.get("EMAIL_USER")
+        sender_password = os.environ.get("EMAIL_PASS")
 
-    owner_email = "gameonstudiocreate@gmail.com"   # ✅ YOUR EMAIL
+        owner_email = sender_email
 
-    body = f"""
-    New Contact Form Submission:
+        body = f"""
+        New Contact Form Submission:
 
-    Name: {first} {last}
-    Email: {user_email}
-    Subject: {subject}
-    Message: {message}
-    """
+        Name: {first} {last}
+        Email: {user_email}
+        Subject: {subject}
+        Message: {message}
+        """
 
-    msg = MIMEText(body)
-    msg["Subject"] = "New Contact Form Submission"
-    msg["From"] = sender_email
-    msg["To"] = owner_email
-    msg["Reply-To"] = user_email   # 🔥 reply goes to user
+        msg = MIMEText(body)
+        msg["Subject"] = "New Contact Form Submission"
+        msg["From"] = sender_email
+        msg["To"] = owner_email
+        msg["Reply-To"] = user_email
 
-    server = smtplib.SMTP("smtp.gmail.com", 587)
-    server.starttls()
-    server.login(sender_email, sender_password)
-    server.send_message(msg)
-    server.quit()
+        server = smtplib.SMTP("smtp.gmail.com", 587, timeout=10)
+        server.starttls()
+        server.login(sender_email, sender_password)
+        server.send_message(msg)
+        server.quit()
 
-
+    except Exception as e:
+        print("EMAIL ERROR:", e)
 
 
 
