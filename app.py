@@ -87,29 +87,32 @@ def send_email(first, last, user_email, subject, message):
 
 @app.route('/contact', methods=['POST'])
 def contact():
-    first = request.form['first_name']
-    last = request.form['last_name']
-    email = request.form['email']
-    subject = request.form['subject']
-    message = request.form['message']
-    db=get_db()
-    cursor = db.cursor()
-    # Save to DB
-    cursor.execute("""
-   INSERT INTO contacts (first_name, last_name, email, subject, message)
-   VALUES (%s,%s,%s,%s,%s)
-   ON DUPLICATE KEY UPDATE
-   first_name=%s, last_name=%s, subject=%s, message=%s
-""", (first, last, email, subject, message,
-      first, last, subject, message))
+    try:
+        first = request.form['first_name']
+        last = request.form['last_name']
+        email = request.form['email']
+        subject = request.form['subject']
+        message = request.form['message']
 
-    db.commit()   # 🔥 VERY IMPORTANT
-    db.close()
+        db = get_db()
+        cursor = db.cursor()
 
-# Send email after saving
-    send_email(first, last, email, subject, message)
+        cursor.execute("""
+            INSERT INTO contacts (first_name, last_name, email, subject, message)
+            VALUES (%s, %s, %s, %s, %s)
+        """, (first, last, email, subject, message))
 
-    return redirect(url_for('dashboard', success=1) + "#contact")
+        db.commit()
+        cursor.close()
+        db.close()
+
+        send_email(first, last, email, subject, message)
+
+        return redirect(url_for('dashboard') + "#contact")
+
+    except Exception as e:
+        print("CONTACT FORM ERROR:", e)
+        return "Something went wrong. Please try again later.", 500
 
 
 if __name__ == "__main__":
