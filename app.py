@@ -44,18 +44,15 @@ def unreal():
 def unity():
     return render_template('unity.html')
 
-import mysql.connector
-import smtplib
-from email.mime.text import MIMEText
-
-
-
-
 
 
 # EMAIL FUNCTION (SEND TO OWNER)
 def send_email(first, last, sender_email, subject, message):
     try:
+        import smtplib
+        import os
+        from email.mime.text import MIMEText
+
         owner_email = os.environ.get("EMAIL_USER")
         app_password = os.environ.get("EMAIL_PASS")
 
@@ -71,9 +68,9 @@ Message: {message}
         msg["Subject"] = subject
         msg["From"] = owner_email
         msg["To"] = owner_email
-        msg["Reply-To"] = sender_email 
+        msg["Reply-To"] = sender_email
 
-        server = smtplib.SMTP("smtp.gmail.com", 587)
+        server = smtplib.SMTP("smtp.gmail.com", 587, timeout=30)
         server.starttls()
         server.login(owner_email, app_password)
         server.sendmail(owner_email, owner_email, msg.as_string())
@@ -83,7 +80,6 @@ Message: {message}
 
     except Exception as e:
         print("EMAIL FAILED:", e)
-
 
 @app.route('/contact', methods=['POST'])
 def contact():
