@@ -52,9 +52,6 @@ def send_email(first, last, sender_email, subject, message):
         owner_email = os.environ.get("EMAIL_USER")
         app_password = os.environ.get("EMAIL_PASS")
 
-        print("EMAIL_USER =", owner_email)
-        print("EMAIL_PASS EXISTS =", bool(app_password))
-
         if not owner_email or not app_password:
             print("EMAIL SETTINGS MISSING")
             return
@@ -75,7 +72,14 @@ Message:
         msg["To"] = owner_email
         msg["Reply-To"] = sender_email
 
-        server = smtplib.SMTP("smtp.gmail.com", 587, timeout=10)
+        print("Trying SMTP connection...")
+
+        server = smtplib.SMTP(
+            "smtp.gmail.com",
+            587,
+            timeout=5
+        )
+
         server.starttls()
         server.login(owner_email, app_password)
 
@@ -90,7 +94,7 @@ Message:
         print("EMAIL SENT SUCCESS")
 
     except Exception as e:
-        print("EMAIL FAILED:", e)
+        print("EMAIL FAILED:", str(e))
 
 
 # ==========================
