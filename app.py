@@ -49,12 +49,15 @@ def unity():
 # EMAIL FUNCTION (SEND TO OWNER)
 def send_email(first, last, sender_email, subject, message):
     try:
-        import smtplib
-        import os
-        from email.mime.text import MIMEText
-
         owner_email = os.environ.get("EMAIL_USER")
         app_password = os.environ.get("EMAIL_PASS")
+
+        print("EMAIL_USER =", owner_email)
+        print("EMAIL_PASS EXISTS =", bool(app_password))
+
+        if not owner_email or not app_password:
+            print("EMAIL SETTINGS MISSING")
+            return
 
         msg = MIMEText(f"""
 New Contact Form Message
@@ -62,18 +65,26 @@ New Contact Form Message
 Name: {first} {last}
 Email: {sender_email}
 Subject: {subject}
-Message: {message}
-        """)
 
-        msg["Subject"] = subject
+Message:
+{message}
+""")
+
+        msg["Subject"] = f"Contact Form: {subject}"
         msg["From"] = owner_email
         msg["To"] = owner_email
         msg["Reply-To"] = sender_email
 
-        server = smtplib.SMTP("smtp.gmail.com", 587, timeout=30)
+        server = smtplib.SMTP("smtp.gmail.com", 587, timeout=10)
         server.starttls()
         server.login(owner_email, app_password)
-        server.sendmail(owner_email, owner_email, msg.as_string())
+
+        server.sendmail(
+            owner_email,
+            owner_email,
+            msg.as_string()
+        )
+
         server.quit()
 
         print("EMAIL SENT SUCCESS")
@@ -81,6 +92,10 @@ Message: {message}
     except Exception as e:
         print("EMAIL FAILED:", e)
 
+
+# ==========================
+# CONTACT FORM
+# ==========================
 @app.route('/contact', methods=['POST'])
 def contact():
     try:
@@ -94,24 +109,35 @@ def contact():
         cursor = db.cursor()
 
         cursor.execute("""
-            INSERT INTO contacts (first_name, last_name, email, subject, message)
+            INSERT INTO contacts
+            (first_name, last_name, email, subject, message)
             VALUES (%s, %s, %s, %s, %s)
         """, (first, last, email, subject, message))
 
         db.commit()
+
         cursor.close()
         db.close()
 
-        send_email(first, last, email, subject, message)
+        # Email failure won't break the form
+        try:
+            send_email(first, last, email, subject, message)
+        except Exception as email_error:
+            print("EMAIL ERROR:", email_error)
 
         flash("Message submitted successfully!", "success")
+
         return redirect(url_for('dashboard'))
 
     except Exception as e:
-        print(e)
-        flash("Something went wrong", "danger")
+        print("CONTACT ERROR:", e)
+
+        flash("Something went wrong!", "danger")
+
         return redirect(url_for('dashboard'))
 
+
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
+
+       app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
 
