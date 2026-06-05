@@ -50,10 +50,11 @@ def unity():
 def send_email(first, last, sender_email, subject, message):
     
     try:
-        owner_email = os.environ.get("EMAIL_USER")
-        app_password = os.environ.get("EMAIL_PASS")
+        owner_email = os.environ.get("OWNER_EMAIL")
+        smtp_user = os.environ.get("EMAIL_USER")
+        smtp_pass = os.environ.get("EMAIL_PASS")
 
-        if not owner_email or not app_password:
+        if not owner_email or not smtp_user or not smtp_pass:
             print("EMAIL SETTINGS MISSING")
             return
 
@@ -77,7 +78,7 @@ Message:
 
         server = smtplib.SMTP("smtp-relay.brevo.com", 587, timeout=10)
         server.starttls()
-        server.login(owner_email, app_password)
+        server.login(smtp_user, smtp_pass)
 
         server.sendmail(
             owner_email,
