@@ -49,10 +49,15 @@ def unity():
 # EMAIL FUNCTION (SEND TO OWNER)
 def send_email(first, last, sender_email, subject, message):
     
+    
     try:
         owner_email = os.environ.get("OWNER_EMAIL")
         smtp_user = os.environ.get("EMAIL_USER")
         smtp_pass = os.environ.get("EMAIL_PASS")
+        print("OWNER_EMAIL =", owner_email)
+        print("SMTP_USER =", smtp_user)
+        print("SMTP_PASS EXISTS =", bool(smtp_pass))
+
 
         if not owner_email or not smtp_user or not smtp_pass:
             print("EMAIL SETTINGS MISSING")
