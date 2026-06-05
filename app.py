@@ -48,7 +48,7 @@ def unity():
 
 # EMAIL FUNCTION (SEND TO OWNER)
 def send_email(first, last, sender_email, subject, message):
-    
+    print("SEND_EMAIL FUNCTION CALLED")
     
     try:
         owner_email = os.environ.get("OWNER_EMAIL")
@@ -104,6 +104,7 @@ Message:
 # ==========================
 @app.route('/contact', methods=['POST'])
 def contact():
+    print("CONTACT ROUTE CALLED")
     try:
         first = request.form['first_name']
         last = request.form['last_name']
