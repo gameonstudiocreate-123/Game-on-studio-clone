@@ -80,17 +80,25 @@ Message:
         msg["Reply-To"] = sender_email
 
         print("Trying SMTP connection...")
+        print("OWNER_EMAIL =", owner_email)
+        print("SMTP_USER =", smtp_user)
 
-        server = smtplib.SMTP("smtp-relay.brevo.com", 587, timeout=10)
+        server = smtplib.SMTP(
+    "smtp-relay.brevo.com",
+    2525,
+    timeout=20
+)
+        print("CONNECTED")
         server.starttls()
+        print("TLS OK")
         server.login(smtp_user, smtp_pass)
+        print("LOGIN OK")
 
         server.sendmail(
-            owner_email,
-            owner_email,
-            msg.as_string()
-        )
-
+        smtp_user,
+    owner_email,
+    msg.as_string()
+)
         server.quit()
 
         print("EMAIL SENT SUCCESS")
