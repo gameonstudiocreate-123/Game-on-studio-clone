@@ -48,6 +48,7 @@ def unity():
 
 # EMAIL FUNCTION (SEND TO OWNER)
 def send_email(first, last, sender_email, subject, message):
+    
     try:
         owner_email = os.environ.get("EMAIL_USER")
         app_password = os.environ.get("EMAIL_PASS")
@@ -74,12 +75,7 @@ Message:
 
         print("Trying SMTP connection...")
 
-        server = smtplib.SMTP(
-            "smtp.gmail.com",
-            587,
-            timeout=5
-        )
-
+        server = smtplib.SMTP("smtp-relay.brevo.com", 587, timeout=10)
         server.starttls()
         server.login(owner_email, app_password)
 
