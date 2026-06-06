@@ -404,7 +404,7 @@ section {
 ================================= */
 
 /* Tablets */
-@media screen and (max-width: 1024px) {
+/* @media screen and (max-width: 1024px) {
 
     .about-content {
         width: 90%;
@@ -436,11 +436,11 @@ section {
     .row {
         flex-direction: column;
     }
-}
+} */
 
 
 /* Mobile Phones */
-@media screen and (max-width: 767px) {
+/* @media screen and (max-width: 767px) {
 
     .top-bar {
         padding: 10px;
@@ -554,10 +554,10 @@ section {
         width: 250px;
     }
 }
-
+ */
 
 /* Large Screens */
-@media screen and (min-width: 1025px) {
+/* @media screen and (min-width: 1025px) {
 
     .contact-container {
         max-width: 700px;
@@ -583,4 +583,4 @@ section {
     #unity img {
         width: 100%;
     }
-}
+} */
