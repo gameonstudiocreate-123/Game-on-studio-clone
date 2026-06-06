@@ -383,6 +383,47 @@ section {
 .danger {
     background-color: red;
 }
+/* Bottom Navigation Bar */
+.sidebar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background: #111;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.sidebar h2 {
+    display: none;
+}
+
+.sidebar ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    justify-content: space-evenly;
+}
+
+.sidebar ul li {
+    margin: 0;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.sidebar ul li a:hover {
+    color: #00ffcc;
+}
 /* ===============================
    RESPONSIVE DESIGN
 ================================= */
